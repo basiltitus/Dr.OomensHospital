@@ -36,3 +36,111 @@
     transform: rotate(360deg);
   }
 }
+/* User defined CSS */
+
+.PrimaryColour{
+color: #BD453D !important;
+}
+.SecColour{
+  color: #FBC02D !important;
+  }
+  .fw500{
+    font-weight: 500;
+  }
+  .fw600{
+    font-weight: 600;
+  }
+  .fw700{
+    font-weight: 700;
+  }
+  .fw800{
+    font-weight: 800;
+  }
+  .fw900{
+    font-weight: 900;
+  }
+  .fontS1{
+    font-size: 1rem !important;
+  }
+  .fontS3{
+    font-size: 0.75rem !important;
+  }
+
+  .heroText{
+    font-size: 3.2rem;
+    font-weight:900 !important;
+    line-height: 1; 
+    color: #BD453D !important;
+  }
+  .doctorCardBody{
+    text-align: left !important;
+    padding: 5%;
+  }
+  .doctorCard{
+    width: 27rem;
+    height: 27rem;
+    
+  }
+  .doctorImg{
+    height:20rem;
+    /* width: 20rem; */
+  }
+
+  .appointmentBtn{
+    background-color: #FBC02D;
+    border: #FBC02D;
+    width: 18%;
+  }
+  .appointmentBtn:hover{
+    background-color: #FBC02D;
+    border: #FBC02D;
+    width: 18%;
+  }
+  .circleLogo{
+    border: 1px solid #FBC02D;
+    border-radius: 100%;
+    padding: 0.25rem;
+    /* color: #FBC02D; */
+  }
+  .text-left{
+    text-align: left !important;
+  }
+  .jumbotron{
+    background-image: url('https://moffatteyecare.com/wp-content/uploads/2022/01/shutterstock_1946758627.jpg') ;
+    /* no-repeat center center fixed; */
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 25rem !important;
+    text-align: left;
+    padding: 10%;
+  }
+  .aboutImg{
+    background-image: url('https://images.everydayhealth.com/images/cs-doctors-on-your-ted-care-team-alt-1440x810.jpg');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 25rem !important;
+    
+  }
+.blockText{
+  text-align: left;
+  padding: 15% 5%;
+}
+  @media only screen and (max-width: 768px) {
+    .appointmentBtn{
+      width: 90%;
+    }
+    .jumbotron{
+      text-align: center;
+      height: 40rem !important;
+      padding: 0%;
+      padding-top: 40%;
+      font-weight: 400;
+    }
+    .aboutImg{
+      display:none;
+    }
+  }
