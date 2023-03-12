@@ -1,0 +1,41 @@
+#carousel-card {
+    height: 40rem;
+  }
+  #carousel-card img {
+    /* position: absolute; */
+    /* top: 50%; */
+    width: 100%;
+    height: 30rem;
+    opacity: 0.8;
+    filter: brightness(50%);
+  }
+  #carousel-card .content {
+    position: absolute;
+    /* top: 50%; */
+    /* left: 25%;
+    right: 45%; */
+    transform: translate(0rem, -27rem);
+    width: 100%;
+    text-align: center;
+    z-index: 100;
+  }
+  #carousel-card h1{
+      color: white;
+      font-weight: 900;
+  }
+  #carousel-card h5{
+      color: white;
+      font-weight: 400;
+  }
+  #carousel-card hr{
+    position: relative;
+    border: none;
+    height: 0.01rem;
+    width: 20%;
+    left: 40%;
+    background:white;
+    font-weight: 900;
+    opacity: 1;
+    margin-bottom: 2rem;
+  }
+  

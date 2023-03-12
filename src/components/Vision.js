@@ -1,25 +1,20 @@
 import React from "react";
 import { Col, Container, Image, Row } from "react-bootstrap";
-import { visionText } from "../Constants";
-
+import { visionImgUrl, visionText } from "../Constants";
+import './Vision.css'
 function Vision(){
-    return  <Container fluid>
-    <Row>
-      <Col className='aboutImg'>
-      </Col>
-      <Col>
-          <div className="blockText">
-              <h3 className="PrimaryColour fw700">Our Vision</h3>
-              <p className='fontS1'>
-              {visionText}
-              </p>
-              <hr/>
-              <p className='fontS3'>
-                  {visionText}
-              </p>
-          </div>
-      </Col>
-    </Row>
+    return  <Container fluid id='vision-container'>
+    <img src={visionImgUrl} />
+    <div className="content">
+    <span className="icon">
+    <i class="fa-solid fa-quote-right"></i>
+    </span>
+    <p><b>Our Vision</b>{visionText}</p>
+    <hr/>
+    <p>
+      Dr.Oommen Varghese
+    </p>
+    </div>
   </Container>
 }
 
