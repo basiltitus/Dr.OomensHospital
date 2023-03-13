@@ -39,31 +39,7 @@
   font-size: 3rem !important;
 }
 
-.doctorCardBody {
-  text-align: center !important;
-  padding: 5%;
-  height: 10rem;
-  background-color: #fbc02d;
-}
-.doctorCard {
-  width: 17rem;
-  height: 33rem;
-  border: 0%;
-}
-.doctorCardBody .card-text{
-  padding: 0% 10%;
-  font-size: 1.2rem;
-}
-.doctorImg {
-  height: 23rem;
-  /* width: 20rem; */
-}
-.doctorDiv {
-  padding-left: 10%;
-  margin-top: 2rem;
-  border-right: 1px solid #bd453d;
-  margin-left: 3rem;
-}
+
 .appointmentBtn,
 .appointmentBtn:hover,
 .appointmentBtn::after,
@@ -259,6 +235,9 @@
 }
 
 @media only screen and (max-width: 768px) {
+  body{
+    width: 102vw !important;
+  }
   .counter-card {
     font-size: 0.1 rem !important;
     font-weight: 300 !important;
@@ -272,14 +251,16 @@
     font-size: 1rem !important;
   }
   .hero-content h1 {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
   .hero-content {
     text-align: center;
-    left: auto;
-    right: auto;
+    /* left: auto;
+    right: auto; */
+    padding: 0%;
+    padding-top: 40%;
     position: absolute;
-    transform: translate(0%, -50%);
+    transform: translate(0%, 0%);
   }
   .hero-content p {
     font-size: 1.5rem;
@@ -327,17 +308,6 @@
 
   .aboutImg {
     display: none;
-  }
-  .doctorDiv {
-    margin-top: 50rem;
-    margin-left: 0rem;
-  }
-  .doctorCard {
-    width: 23rem;
-    height: 27rem;
-  }
-  .doctorCardBody {
-    padding: 3%;
   }
   .blockText {
     text-align: center;

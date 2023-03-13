@@ -10,23 +10,18 @@ import {
   doctorDivCaption,
 } from "../Constants";
 import DoctorCard from "./DoctorCard";
+import './Doct.css'
 
 export default function DoctorDiv() {
-  return (
-    <Container>
-      <h1 className="PrimaryColour fw700">
-        <i class="fa-solid fa-grip-lines"></i>&nbsp;&nbsp;&nbsp;Meet Our Team&nbsp;&nbsp;&nbsp;
-        <i class="fa-solid fa-grip-lines"></i>
-      </h1>
-      <h2  className='SecColour fw700'>{doctorDivCaption}</h2>
-      <Row>
-        <Col className="doctorDiv">
+  return (    <Container fluid className='doctorDiv'>
+  <Row>
+    <Col>
           <DoctorCard
             doctorImg={doctor1Img}
             doctorName={doctor1Name}
             doctorCaption={doctor1Caption}
           />
-        </Col>
+</Col>
         <Col className="doctorDiv">
           <DoctorCard
             doctorImg={doctor2Img}
@@ -37,6 +32,6 @@ export default function DoctorDiv() {
       </Row>
       <br />
       <br />
-    </Container>
+      </Container>
   );
 }

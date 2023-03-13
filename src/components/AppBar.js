@@ -15,9 +15,9 @@ return( <Navbar collapseOnSelect expand="lg" style={{backgroundColor:'white'}}>
   <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
     <AppointmentBtn />
     <Nav >
-      <Nav.Link href="#AboutDiv" className='PrimaryColour fw500'>About Us</Nav.Link>
-      <Nav.Link href="#EventsDiv" className='PrimaryColour fw500'>Events</Nav.Link>
-      <Nav.Link eventKey={2} href="#AboutDiv" className='PrimaryColour fw500'>
+      <Nav.Link href="#AboutDiv" className='PrimaryColour fw700'>About Us</Nav.Link>
+      <Nav.Link href="#EventsDiv" className='PrimaryColour fw700'>Events</Nav.Link>
+      <Nav.Link eventKey={2} href="#AboutDiv" className='PrimaryColour fw700'>
 Contact Us
       </Nav.Link>
     </Nav>

@@ -19,7 +19,7 @@ function HeroScreen(){
          
           <AppointmentBtn/>
         </Col>
-        <Col>
+        <Col className='desktop-view'>
           <img src={heroDoctor}/>
         </Col>
         </div>

@@ -1,6 +1,7 @@
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import ServiceItem from "./ServiceItem";
+import './Services.css'
 
 export default function Services(){
     return(

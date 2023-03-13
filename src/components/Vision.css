@@ -42,3 +42,19 @@
   font-weight: 900;
   opacity: 1;
 }
+@media only screen and (max-width: 768px) {
+  #vision-container {
+    height: 40rem;
+  }
+  #vision-container img {
+    height: 40rem;
+  }
+  #vision-container .content {
+  transform: translate(0rem, -40rem);
+  }
+  #vision-container p {
+    font-size: 1.1rem;
+    margin-left: 7.5%;
+    width: 85%;
+  }
+}
