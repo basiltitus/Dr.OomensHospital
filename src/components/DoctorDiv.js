@@ -14,6 +14,8 @@ import './Doct.css'
 
 export default function DoctorDiv() {
   return (    <Container fluid className='doctorDiv'>
+  <h1 className="fw800 PrimaryColour">Meet Our Team</h1>
+  <h2 className="hw700 SecColour">We Devote Ourselves for you</h2>
   <Row>
     <Col>
           <DoctorCard

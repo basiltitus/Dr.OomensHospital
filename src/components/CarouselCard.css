@@ -9,6 +9,14 @@
     opacity: 0.8;
     filter: brightness(50%);
   }
+  #carousel-card .card{
+      width: 100% !important;
+      height: 100%;
+  }
+  .card-img-top{
+    opacity: 1 !important;
+    filter: brightness(100%) !important;
+  }
   #carousel-card .content {
     position: absolute;
     /* top: 50%; */
@@ -51,9 +59,9 @@
   .card-style{
     height: 30rem;
     width: 25rem;
-    padding: 80px;
+    /* padding: 80px; */
     text-align: center;
-    background: #E8DBFC;
+    background: white;
     color: black;
     font-size: 12px;
     text-transform: uppercase;

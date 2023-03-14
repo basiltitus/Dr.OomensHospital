@@ -8,7 +8,7 @@ import AppointmentBtn from "./AppointmentBtn";
 
 
 function AppBar(){
-return( <Navbar collapseOnSelect expand="lg" style={{backgroundColor:'white'}}>
+return( <Navbar collapseOnSelect expand="lg" style={{backgroundColor:'white',zIndex:100}}>
 <Container>
   <Navbar.Brand href="#home" className='PrimaryColour'></Navbar.Brand>
   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -17,7 +17,7 @@ return( <Navbar collapseOnSelect expand="lg" style={{backgroundColor:'white'}}>
     <Nav >
       <Nav.Link href="#AboutDiv" className='PrimaryColour fw700'>About Us</Nav.Link>
       <Nav.Link href="#EventsDiv" className='PrimaryColour fw700'>Events</Nav.Link>
-      <Nav.Link eventKey={2} href="#AboutDiv" className='PrimaryColour fw700'>
+      <Nav.Link eventKey={2} href="#location-cont" className='PrimaryColour fw700'>
 Contact Us
       </Nav.Link>
     </Nav>
