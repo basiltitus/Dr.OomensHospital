@@ -4,6 +4,7 @@
   background-color: #f5f5f5;
   font-family: "Yeseva One";
   overflow-x: hidden;
+  width: 100%;
 }
 
 .PrimaryColour {
@@ -115,7 +116,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  filter: blur(15px) opacity(1) brightness(140%);
+  filter: blur(15px) opacity(0.7) brightness(120%);
   overflow: hidden;
 }
 
@@ -136,6 +137,7 @@
   right: 45%; */
   /* transform: translate(-50%, -50%); */
   text-align: left;
+  filter: blur(0px) opacity(1) brightness(100%);
   padding: 10% 10%;
   z-index: 1;
   width: 100%;
@@ -159,17 +161,22 @@
 }
 .top-item {
   /* padding-top: 10%; */
-  font-weight: 600;
+  font-weight: 500;
 
+cursor: pointer;
   font-size: 0.85rem;
 }
 .top-item-text {
-  margin-left: 5%;
+  margin-left: 5%;  
   vertical-align: auto;
+  color: #bd453d;
   font-family: "Work Sans" !important;
 }
+.top-item .row{
+  padding-top: 3%;
+}
 .top-item-top-text {
-  color: blue;
+  color: #1F2B6C;
 }
 .topbar-title {
   font-size: 2.5rem;
@@ -237,7 +244,10 @@
 
 @media only screen and (max-width: 768px) {
   body{
-    width: 102vw !important;
+    width: 100vw !important;
+    max-width: 100% !important;
+    padding: 0%;
+    overflow-x: hidden;
   }
   .counter-card {
     font-size: 0.1 rem !important;
@@ -246,10 +256,10 @@
   .circle-icon {
     width: 2.5rem !important;
     height: 2.5rem !important;
-    padding: 2% !important;
+    padding: 6% !important;
   }
   .circle-icon i {
-    font-size: 1rem !important;
+    font-size: 1.5rem !important;
   }
   .hero-content h1 {
     font-size: 2.5rem;
@@ -292,10 +302,15 @@
   .top-item-icon {
     font-size: 1.4rem !important;
   }
+  .top-item{
+    z-index: 100;
+  }
   .top-item-text {
     text-align: center;
     margin-left: 0% !important;
     margin: auto;
+    font-size: 0.8rem;
+    font-weight: 600;
   }
   .highlighted-card {
     height: 100% !important;
@@ -336,5 +351,9 @@ element.style {
     font-size: 1rem;
   text-align: justify;
   font-weight: bold;
+  }
+  .card-text {
+    padding: 12% 3%;
+    font-size: 1.1rem;
   }
 }

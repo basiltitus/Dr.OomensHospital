@@ -1,6 +1,6 @@
 import React from "react";
 import { Col, Container, Image, Row } from "react-bootstrap";
-import { visionImgUrl, visionText } from "../Constants";
+import { visionImgUrl, visionText } from "../../Constants";
 import './Vision.css'
 function Vision(){
     return  <Container fluid id='vision-container'>

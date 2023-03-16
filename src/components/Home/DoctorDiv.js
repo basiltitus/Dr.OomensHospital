@@ -8,7 +8,7 @@ import {
   doctor2Img,
   doctor2Name,
   doctorDivCaption,
-} from "../Constants";
+} from "../../Constants";
 import DoctorCard from "./DoctorCard";
 import './Doct.css'
 
@@ -32,8 +32,6 @@ export default function DoctorDiv() {
           />
         </Col>
       </Row>
-      <br />
-      <br />
       </Container>
   );
 }

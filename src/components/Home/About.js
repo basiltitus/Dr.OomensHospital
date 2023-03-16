@@ -1,6 +1,6 @@
 import React from "react";
 import { Col, Container, Image, Row } from "react-bootstrap";
-import { aboutText } from "../Constants";
+import { aboutText } from "../../Constants";
 
 function About(){
     return  <Container  id='aboutDiv'>

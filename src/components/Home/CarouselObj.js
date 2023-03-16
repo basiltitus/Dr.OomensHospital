@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Card } from "react-bootstrap";
-import AppointmentBtn from "./AppointmentBtn";
+import AppointmentBtn from "../Utilities/AppointmentBtn";
 
 export default function CarouselObj(props){
 return(
@@ -10,7 +10,7 @@ return(
                     src={props.imgurl}
                   />
                   <Card.Body>
-                    <Card.Title>{props.title}</Card.Title>
+                    <Card.Title><h1>{props.title}</h1></Card.Title>
 
                     <AppointmentBtn/>
                   </Card.Body>

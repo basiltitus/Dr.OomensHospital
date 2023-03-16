@@ -1,5 +1,7 @@
 #carousel-card {
-    height: 40rem;
+    height: 42rem;
+    width: 100%;
+    padding: 0%;
   }
   #carousel-card img {
     /* position: absolute; */
@@ -12,6 +14,17 @@
   #carousel-card .card{
       width: 100% !important;
       height: 100%;
+  }
+  .content h1{
+      color: #BD453D;
+      font-size: 2rem ;
+  }
+  .content-title{
+      color:white !important;
+      font-size: 3rem !important;
+  }
+  .content p{
+      font-weight: 500;
   }
   .card-img-top{
     opacity: 1 !important;
@@ -28,7 +41,7 @@
     z-index: 100;
   }
   #carousel-card h1{
-      color: white;
+      font-size: 1.8rem;
       font-weight: 900;
   }
   #carousel-card h5{
@@ -53,6 +66,7 @@
     width: 100%;
     display: flex;
     flex: 1;
+    margin-top: 3%;
     justify-content: center;
     align-items: middle;
   }
@@ -62,8 +76,7 @@
     /* padding: 80px; */
     text-align: center;
     background: white;
-    color: black;
-    font-size: 12px;
+    color: #BD453D;
     text-transform: uppercase;
     border-radius: 10px;
     box-sizing: border-box;
@@ -72,35 +85,40 @@
   @media only screen and (max-width: 768px) {
 
     #carousel-card {
-        height: 30rem;
+        height: 40rem;
+        overflow-x: hidden;
+        width: 100%;
       }
       #carousel-card img {
         width: 100%;
-        height: 15rem;
+        height: 20rem;
       }
       #carousel-card .content {
         position: absolute;
        
-        transform: translate(0rem, -14rem);
+        transform: translate(0rem, -13rem);
         width: 100%;
         text-align: center;
         z-index: 100;
       }
     .container-style{
         position: relative;
-        height: 18rem;
+        height: 22rem;
         width: 70%;
-        margin-left: 12%;
+        margin-left: 15%;
         display: flex;
         flex: 1;
         justify-content: center;
         align-items: middle;
       }
       .card-style{
-        height: 22rem;
-        width: 15rem;
-        padding: 30px;
-        color: black;
-        font-size: 1.2rem;;
+        height: 24rem;
+        width: 16rem;
+        padding: 0px;
+        color: #BD453D;
+        font-size: 1rem;;
+      }
+      #carousel-card h1{
+          font-size: 1.3rem;
       }
   }

@@ -6,7 +6,7 @@ import TopbarItemMobile from "./TopbarItemMobile";
 export default function Topbar() {
   return (
     <span>
-      <Row style={{ textAlign: "left" }} className="desktop-view">
+      <Row style={{ textAlign: "left" ,backgroundColor:'#F6F2F2'}} className="desktop-view">
         <Col md={5} sm={12} className="topbar-title PrimaryColour">
           Dr. Oommens
         </Col>

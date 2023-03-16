@@ -1,34 +1,29 @@
+import React from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
-import About from "./components/About";
-import AppBar from "./components/AppBar";
-import CarouselCard from "./components/CarouselCard";
-import DoctorDiv from "./components/DoctorDiv";
-import Footer from "./components/Footer";
-import HeroScreen from "./components/HeroScreen";
-import Location from "./components/Location";
-import Services from "./components/Services";
-import Topbar from "./components/Topbar";
-import Vision from "./components/Vision";
-import WelcomeCard from "./components/WelcomeCard";
+import Events from "./components/Events";
+import Home from "./components/Home";
+import ErrorPage from './components/Utilities/ErrorPage'
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/pages/events",
+    element: <Events />,
+  },
+]);
 
 function App() {
   return (
     <div className="App">
-      <Topbar />
-      <AppBar />
-      <HeroScreen />
-      <WelcomeCard />
-      <hr/>
-      <Services />
-      <hr />
-      <Vision />
-      <hr />
-      <DoctorDiv />
-      <hr />
-      <CarouselCard />
-      <hr />
-      <Location />
-      <Footer />
+    <React.StrictMode>
+    <RouterProvider router={router} />
+
+      </React.StrictMode>
     </div>
   );
 }
