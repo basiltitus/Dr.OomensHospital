@@ -1,23 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import BookingModal from "../Events/BookingModal";
 
 function AppointmentBtn() {
   const MySwal = withReactContent(Swal);
-  return (
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  return (<>
     <Button
       className="appointmentBtn fw500"
-      onClick={() =>
-        MySwal.fire({
-          title: <strong>Good job!</strong>,
-          html: <i>Booking will open shortly!</i>,
-          icon: "success",
-        })
+      onClick={() =>{handleShow();}
+
+        // MySwal.fire({
+        //   title: <strong>Good job!</strong>,
+        //   html: <i>Booking will open shortly!</i>,
+        //   icon: "success",
+        // })
       }
     >
       Book Now
     </Button>
+    <BookingModal show={show} handleClose={handleClose}/>
+    </>
   );
 }
 

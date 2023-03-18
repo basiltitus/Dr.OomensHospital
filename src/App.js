@@ -1,6 +1,7 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
+import Admin from "./components/Admin";
 import Events from "./components/Events";
 import Home from "./components/Home";
 import ErrorPage from './components/Utilities/ErrorPage'
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
   {
     path: "/pages/events",
     element: <Events />,
+  },
+  {
+    path: "/admin/dashboard",
+    element: <Admin />,
   },
 ]);
 

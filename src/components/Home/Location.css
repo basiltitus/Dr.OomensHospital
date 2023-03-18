@@ -96,6 +96,9 @@
     width: 100%;
     height: 100%;
   }
+  #location-cont iframe{
+    width: 21rem;
+}
   #location-cont .container .content{
     flex-direction: column-reverse;
   }
