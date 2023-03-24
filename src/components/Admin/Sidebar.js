@@ -31,6 +31,14 @@ export default function Sidebar(props){
                     SMS Center
                 </NavText>
             </NavItem>
+            <NavItem eventKey="devices">
+                        <NavIcon>
+                            <i className="fa fa-fw fa-device" style={{ fontSize: '1.75em' }} />
+                        </NavIcon>
+                        <NavText>
+                            Devices
+                        </NavText>
+                    </NavItem>    
         </SideNav.Nav>
     </SideNav>)
 }

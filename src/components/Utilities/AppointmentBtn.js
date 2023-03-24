@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import BookingModal from "../Events/BookingModal";
+import BookingModal from "../Home/BookingModal";
 
 function AppointmentBtn() {
   const MySwal = withReactContent(Swal);
