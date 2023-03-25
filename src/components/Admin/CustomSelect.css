@@ -17,11 +17,14 @@ select {
   select::-ms-expand {
     display: none;
   }
+  .select-title{
+      font-weight: 600;
+  }
   /* Custom Select wrapper */
   .select {
     position: relative;
     display: flex;
-    width: 15em;
+    width: 90%;
     height: 3em;
     border-radius: .25em;
     overflow: hidden;

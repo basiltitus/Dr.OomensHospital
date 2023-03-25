@@ -1,9 +1,25 @@
 #adminContent{
     background-color: white;
-    height: 100vh !important;
-    width: 96.5w;
-    margin-left: 3.5vw;
+    height: 90vh !important;
+    width: 100%;
+    padding: 1rem 1rem;
 }
-.ind-page{
-    height: 90vh;
+.hamBtn{
+    background-color: grey;
+    color: white;
+    border: 0;
+    font-size: 1.5rem;
+}
+.offcanvas-body{
+    padding: 6rem 0px;
+}
+.offcanvas-body button{
+    width: 100% !important;
+    font-size: 1.5rem;
+    height: 5rem;
+    padding: 0px 2rem;
+}
+.admin-header{
+    background-color: #bd453d !important;
+    color: white;
 }

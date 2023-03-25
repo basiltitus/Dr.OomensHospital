@@ -1,9 +1,15 @@
 import React from "react";
+import { Col, Row } from "react-bootstrap";
 import "./CustomSelect.css";
 export default function CustomSelect(props) {
    const {options}=props;
   return (
-    <div class="select">
+      <Row>
+          <Col md={3} className='select-title'>
+          {props.title}
+          </Col>
+          <Col>
+          <div class="select">
       <select onChange={(e)=>{props.onChange(e.target.value)}}>
         <option value={options[0]} selected>{options[0]}</option>
         {options.map((data,i)=>{
@@ -12,5 +18,8 @@ export default function CustomSelect(props) {
         })}
       </select>
     </div>
+          </Col>
+      </Row>
+    
   );
 }

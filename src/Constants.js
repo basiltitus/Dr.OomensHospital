@@ -12,7 +12,7 @@ export const doctor1Name='Dr. Oommen Varghese';
 export const doctor1Caption='M.B.B.S, M.S [ Ophthalmology ], D.O.M.S'
 
 export const doctor2Img='https://cdn.quotesgram.com/img/98/70/1128465231-Nurse-Doctor-Male.jpg';
-export const doctor2Name='Dr. Oommen Varghese';
+export const doctor2Name='Dr. Arun Philip';
 export const doctor2Caption='M.B.B.S, M.S [ Ophthalmology ], D.O.M.S'
 
 export const locationCaption='Dr. Oommen s Eye Hospital & Microsurgery Centre Thamarasseril Building, Temple Road, Chengannur Alappuzha, Kerala - 689121.'

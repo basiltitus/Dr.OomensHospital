@@ -3,20 +3,43 @@ import Sidebar from "./Sidebar";
 import Topbar from "../Utilities/Topbar";
 import BookingPage from "./BookingPage";
 import SMSPage from "./SmsPage";
-import { Container } from "react-bootstrap";
+import { Button, Col, Container, Row } from "react-bootstrap";
 import Footer from "../Utilities/Footer";
 
-export default function Dashboard(){
-    const [activePage,setActivePage]=React.useState('booking');
-    return(<>
-        <Sidebar activePage={activePage} setActivePage={setActivePage}/>
-        {/* <Topbar/> */}
-        <Container fluid id='adminContent'>
-        <Container fluid className="ind-page">
-        {activePage=='booking'&&<BookingPage />}
-        {activePage=='sms'&&<SMSPage />}
-        </Container>
-        <Footer/>
-        </Container>
-    </>)
+export default function Dashboard() {
+  const [activePage, setActivePage] = React.useState("bookings");
+  const [showSideMenu, setShowSideMenu] = React.useState(false);
+  return (
+    <>
+      <Sidebar
+        show={showSideMenu}
+        onHide={() => setShowSideMenu(false)}
+        activePage={activePage}
+        setActivePage={(val) => {
+          setActivePage(val);
+          setShowSideMenu(false);
+        }}
+      />
+      {/* <Topbar/> */}
+      <Container fluid id="adminContent">
+        <Row className='admin-header'>
+          <Col md={1}>
+            <Button onClick={() => setShowSideMenu(true)} className="hamBtn">
+              <i class="fa-solid fa-bars fa-fade"></i>
+            </Button>
+          </Col>
+          <Col>
+            <h1 className="fw800 ">
+              {activePage == "bookings" && "Booking Management"}
+              {activePage == "sms" && "SMS Management"}
+            </h1>
+          </Col>
+        </Row>
+        <hr></hr>
+        {activePage == "bookings" && <BookingPage />}
+        {activePage == "sms" && <SMSPage />}
+      </Container>
+      <Footer />
+    </>
+  );
 }

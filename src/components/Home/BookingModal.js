@@ -257,6 +257,15 @@ export default function BookingModal(props) {
                             >
                               Get OTP
                             </button>{" "}
+                            
+                            <button
+                              class="cancel-btn"
+                              onClick={() => {
+                                handleClose()
+                              }}
+                            >
+                              Cancel
+                            </button>{" "}
                           </div>
                         </form>
                       </>
@@ -277,6 +286,14 @@ export default function BookingModal(props) {
                           >
                             Confirm
                           </button>{" "}
+                          <button
+                              class="cancel-btn"
+                              onClick={() => {
+                                handleClose();
+                              }}
+                            >
+                              Cancel
+                            </button>
                         </div>
                       </>
                     )}
@@ -390,6 +407,14 @@ export default function BookingModal(props) {
                           >
                             Confirm and make appointment
                           </button>{" "}
+                          <button
+                              class="cancel-btn"
+                              onClick={() => {
+                                handleClose();
+                              }}
+                            >
+                              Cancel
+                            </button>
                         </div>
                       </>
                     )}
