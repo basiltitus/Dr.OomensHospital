@@ -4,14 +4,19 @@ import "./BookingModal.css";
 import OTP from "./OTP";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import { child, get, ref, set } from "firebase/database";
+import { child, get, ref, remove, set } from "firebase/database";
 import { database } from "../firebase";
+import {
+  PDFDownloadLink,
+} from "@react-pdf/renderer";
+import PDF from "./PDF";
+import { Checkmark } from "react-checkmark";
 
 export default function BookingModal(props) {
   const [screen, setScreen] = React.useState(0);
   const [details, setDetails] = React.useState({
     PatientName: "",
-    Age: 0,
+    Age: '',
     DoctorName: "",
     Purpose: "",
     Phone: "",
@@ -20,8 +25,32 @@ export default function BookingModal(props) {
   });
   const [minDate, setMinDate] = React.useState("");
   const [maxDate, setMaxDate] = React.useState("");
+  const [blobURL, setBlobURL] = React.useState("");
 
   function handleClose() {
+    if(screen!=3){
+      if(details.Phone.length==10){
+        const d = new Date();
+        set(
+          ref(
+            database,
+            "Leads/" +
+              d.getFullYear() +
+              "/" +
+              d.toLocaleString("default", { month: "short" }) +
+              "/" +
+              d.getDate() +
+              "/" +
+              details.Phone
+          ),
+          {
+            Phone:details.Phone,
+            Time:d.getHours()+' : '+d.getMinutes()+" : "+d.getSeconds(),
+            Status: "OPEN",
+          }
+        );
+      }
+    }
     setScreen(0);
     setDetails({});
     props.handleClose();
@@ -48,7 +77,7 @@ export default function BookingModal(props) {
     let BookingID = "";
     const db = database;
     let queryString = "";
-    
+
     if (details.DoctorName.includes("Oommen")) queryString = "BookingOommenID";
     else queryString = "BookingDocID";
     get(child(ref(db), queryString))
@@ -57,7 +86,13 @@ export default function BookingModal(props) {
         console.log(BookingID);
 
         const d = new Date(details.BookingDate);
-        const timestamp = Date.now();
+        var currentdate = new Date(); 
+var datetime =  currentdate.getDate() + "/"
+                + (currentdate.getMonth()+1)  + "/" 
+                + currentdate.getFullYear() + " @ "  
+                + currentdate.getHours() + ":"  
+                + currentdate.getMinutes() + ":" 
+                + currentdate.getSeconds();
         set(
           ref(
             db,
@@ -72,32 +107,31 @@ export default function BookingModal(props) {
           ),
           {
             ...details,
-            TimeStamp: timestamp,
+            TimeStamp: datetime,
             BookingID: BookingID,
-            Status:'OPEN'
+            Status: "OPEN",
           }
         );
         set(ref(db, queryString), +BookingID + 1);
         console.log(details);
-        setScreen(0);
-        setDetails({});
+        const f=new Date();
+        remove(
+          ref(
+            database,
+            "Leads/" +
+              f.getFullYear() +
+              "/" +
+              f.toLocaleString("default", { month: "short" }) +
+              "/" +
+              f.getDate() +
+              "/" +
+              details.Phone
+          )
+        )
+        setDetails({ ...details, BookingID: BookingID });
+        setScreen(3);
+        // setDetails({});
         // props.handleClose();
-        Swal.fire({
-          title: 'Booking Confirmed',
-          icon: 'success',
-          confirmButtonText: 'Ok',
-          html:
-          'Your Booking for '+details.DoctorName+' on '+details.BookingDate+' is confirmed.<br/>'+
-          'Booking ID : <b>'+BookingID+'</b><br/>'+
-          'Patient Name : <b>'+details.PatientName+'</b><br/>'+
-          'Doctor Name : <b>'+details.DoctorName+'</b><br/>'
-
-        }).then((result) => {
-          /* Read more about isConfirmed, isDenied below */
-          if (result.isConfirmed) {
-            props.handleClose();
-          }
-        })
       })
       .catch((error) => {
         console.error(error);
@@ -107,6 +141,14 @@ export default function BookingModal(props) {
   return (
     <>
       <Modal show={props.show} onHide={handleClose} id="bookingModal">
+        <Modal.Header closeButton>
+          <Modal.Title className="PrimaryColour">
+            {screen == 0 && "Make your booking"}
+            {screen == 1 && "Confirm OTP"}
+            {screen == 2 && "Confirm details"}
+            {screen == 3 && "Booking Confirmed"}
+          </Modal.Title>
+        </Modal.Header>
         <Modal.Body>
           <div id="booking" class="section">
             <div class="section-center">
@@ -116,9 +158,9 @@ export default function BookingModal(props) {
                     {screen == 0 && (
                       <>
                         {" "}
-                        <div class="form-header">
+                        {/* <div class="form-header">
                           <h1>Make your booking</h1>
-                        </div>
+                        </div> */}
                         <form>
                           <div class="row">
                             <div class="col-md-8">
@@ -174,14 +216,16 @@ export default function BookingModal(props) {
                                     });
                                   }}
                                 >
-                                  <option value="" selected hidden>
+                                  <option value="" selected hidden disabled>
                                     Doctor Name
                                   </option>
                                   <option>Dr. Oommen Varghese</option>
                                   <option>Dr. Arun Philip</option>
                                 </select>{" "}
                                 <span class="select-arrow"></span>{" "}
-                                <span class="form-label">Booking for</span>{" "}
+                                <span class="form-label-select">
+                                  Booking for
+                                </span>{" "}
                               </div>
                             </div>
                             <div class="col-md-6">
@@ -206,7 +250,9 @@ export default function BookingModal(props) {
                                   <option>Follow-up</option>
                                 </select>{" "}
                                 <span class="select-arrow"></span>{" "}
-                                <span class="form-label">Purpose of visit</span>{" "}
+                                <span class="form-label-select">
+                                  Purpose of visit
+                                </span>{" "}
                               </div>
                             </div>
                           </div>
@@ -252,19 +298,15 @@ export default function BookingModal(props) {
                             <button
                               class="submit-btn"
                               onClick={() => {
+                                if(props.isAdmin)
+                                { bookingfn();
+                                  setScreen(3);}
+                                else
                                 setScreen(1);
                               }}
                             >
-                              Get OTP
-                            </button>{" "}
-                            
-                            <button
-                              class="cancel-btn"
-                              onClick={() => {
-                                handleClose()
-                              }}
-                            >
-                              Cancel
+                            {props.isAdmin?'Book Now':
+                              'Get OTP'}
                             </button>{" "}
                           </div>
                         </form>
@@ -272,9 +314,6 @@ export default function BookingModal(props) {
                     )}
                     {screen == 1 && (
                       <>
-                        <div class="form-header">
-                          <h1>Confirm OTP</h1>
-                        </div>
                         <OTP />
                         <div class="form-btn">
                           {" "}
@@ -286,14 +325,6 @@ export default function BookingModal(props) {
                           >
                             Confirm
                           </button>{" "}
-                          <button
-                              class="cancel-btn"
-                              onClick={() => {
-                                handleClose();
-                              }}
-                            >
-                              Cancel
-                            </button>
                         </div>
                       </>
                     )}
@@ -301,9 +332,6 @@ export default function BookingModal(props) {
                     {screen == 2 && (
                       <>
                         {" "}
-                        <div class="form-header">
-                          <h1>Confirm details</h1>
-                        </div>
                         <div class="row">
                           <div class="col-md-8">
                             <div class="form-group">
@@ -350,7 +378,7 @@ export default function BookingModal(props) {
                                 <option>Dr. Arun Philip</option>
                               </select>{" "}
                               <span class="select-arrow"></span>{" "}
-                              <span class="form-label">Booking for</span>{" "}
+                              <span class="form-label-select">Booking for</span>{" "}
                             </div>
                           </div>
                           <div class="col-md-6">
@@ -362,7 +390,7 @@ export default function BookingModal(props) {
                                 disabled
                                 value={details.Purpose}
                               >
-                                <option value="" selected hidden>
+                                <option value="" disabled selected hidden>
                                   Purpose
                                 </option>
                                 <option>Surgery</option>
@@ -394,7 +422,7 @@ export default function BookingModal(props) {
                               value={details.BookingDate}
                               disabled
                             />{" "}
-                            <span class="form-label">Booking Date</span>{" "}
+                            <span class="form-label-select">Booking Date</span>{" "}
                           </div>
                         </div>
                         <div class="form-btn">
@@ -407,14 +435,45 @@ export default function BookingModal(props) {
                           >
                             Confirm and make appointment
                           </button>{" "}
-                          <button
-                              class="cancel-btn"
-                              onClick={() => {
-                                handleClose();
-                              }}
-                            >
-                              Cancel
-                            </button>
+                        </div>
+                      </>
+                    )}
+                    {screen == 3 && (
+                      <>
+                        <Checkmark size="96px" />
+                        <h3
+                          className="text-center"
+                          style={{ padding: "1rem 0rem" }}
+                        >
+                          YOUR BOOKING IS SUCCESSFULL
+                        </h3>
+                        <div className="text-center confirm-deails">
+                          <b>Booking ID: {details.BookingID}</b>
+                          <br />
+                          <b>Booking Date : {details.BookingDate}</b>
+                          <br />
+                          <b>Patient Name : {details.PatientName}</b>
+                          <br />
+                          <b>Doctor Name : {details.DoctorName} </b>
+                          <br />
+                          <b>Purpose : {details.Purpose}</b>
+                        </div>
+
+                        <div class="form-btn">
+                          <PDFDownloadLink
+                            document={<PDF details={details}/>}
+                            fileName={"Booking_" + details.BookingID + ".pdf"}
+                          >
+                            {({ blob, url, loading, error }) =>
+                              loading ? (
+                                "Loading document..."
+                              ) : (
+                                <button class="submit-btn" onClick={() => {}}>
+                                  Print Reciept
+                                </button>
+                              )
+                            }
+                          </PDFDownloadLink>
                         </div>
                       </>
                     )}

@@ -4,7 +4,7 @@ import "./CustomSelect.css";
 export default function CustomSelect(props) {
    const {options}=props;
   return (
-      <Row>
+      <>
           <Col md={3} className='select-title'>
           {props.title}
           </Col>
@@ -19,7 +19,7 @@ export default function CustomSelect(props) {
       </select>
     </div>
           </Col>
-      </Row>
+      </>
     
   );
 }

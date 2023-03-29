@@ -45,4 +45,12 @@ select {
     color: #f39c12;
   }
   
-  
+  @media only screen and (max-width: 768px) {
+      .select{
+          height: 2rem;
+          width: 100%;
+      }
+      .select::after {
+          padding:0.3rem
+      }
+  }

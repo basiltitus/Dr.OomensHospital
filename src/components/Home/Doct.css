@@ -11,21 +11,23 @@
  
   .doctorDiv .card-item{
       width: 100%;
-      height: 60vh;
+      height: 62vh;
       margin-left: auto;
       margin-right: auto;
       text-align:center;
   }
   .our-team {
-      width: 45%;
-      margin-left: 25%;
-    padding: 1px 0 px1px;
+      width: 70%;
+      margin-left: 15%;
+    padding: 1rem 0px;
     margin-bottom: 3px;
     background-color: #f7f5ec;
     text-align: center;
     overflow: hidden;
     position: relative;
     height: 100%;
+    transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   }
   
   .our-team .picture {

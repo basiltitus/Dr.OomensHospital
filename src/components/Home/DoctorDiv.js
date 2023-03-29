@@ -24,6 +24,13 @@ export default function DoctorDiv() {
             doctorCaption={doctor1Caption}
           />
 </Col>
+<Col>
+          <DoctorCard
+            doctorImg={doctor1Img}
+            doctorName={doctor1Name}
+            doctorCaption={doctor1Caption}
+          />
+</Col>
         <Col className="doctorDiv">
           <DoctorCard
             doctorImg={doctor2Img}

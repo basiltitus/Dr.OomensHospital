@@ -6,7 +6,7 @@ export default function OTP() {
   const [OTP, setOTP] = React.useState("");
   const renderButton = (buttonProps) => {
     return (
-      <Button {...buttonProps}>
+      <Button className='resend-btn' {...buttonProps}>
         {buttonProps.remainingTime !== 0 ? `Please wait for ${buttonProps.remainingTime} sec` : "Resend"}
       </Button>
     );

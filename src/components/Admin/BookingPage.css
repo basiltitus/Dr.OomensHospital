@@ -1,8 +1,29 @@
 .emptyImg{
-    width:30vw;
+    width:25vw;
     height: 100%
 }
 .emptyText{
     padding-top: 25vh;
 }
 
+.scrollable{
+    overflow-x: auto;
+    height: 57vh;
+}
+
+@media only screen and (max-width: 768px) {
+    
+    .removeable{
+        display: none;
+    }
+    .emptyImg{
+        width:45vw;
+        height: 100%
+    }
+    .emptyText{
+        padding-top: 10vh;
+        margin: 0px;
+        font-size: 1rem;
+        text-align: center;
+    }
+}

@@ -3,7 +3,7 @@ import React from 'react';
 
 export default function DoctorCard(props){
     return( 
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3 card-item">
+      <div class="card-item">
       <div class="our-team">
         <div class="picture">
           <img class="img-fluid" src={props.doctorImg}/>

@@ -27,6 +27,12 @@ export default function Home(){
       <CarouselCard />
       <hr />
       <Location />
+      <div type="button" class="email-bt" onClick={()=>window.location.href='https://wa.me/918281166690'}>
+    <div class="text-call">
+    <i class="fab fa-brands fa-whatsapp" aria-hidden={true}></i>
+        {/* <span><i class="fab fa-brands fa-whatsapp" aria-hidden={true}></i></span> */}
+    </div>
+</div>
       <Footer />
 </>
     )

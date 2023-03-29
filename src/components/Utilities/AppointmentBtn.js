@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import BookingModal from "../Home/BookingModal";
 
-function AppointmentBtn() {
+function AppointmentBtn(props) {
   const MySwal = withReactContent(Swal);
   const [show, setShow] = useState(false);
 
@@ -24,7 +24,7 @@ function AppointmentBtn() {
     >
       Book Now
     </Button>
-    <BookingModal show={show} handleClose={handleClose}/>
+    <BookingModal show={show} handleClose={handleClose} isAdmin={props.isAdmin}/>
     </>
   );
 }

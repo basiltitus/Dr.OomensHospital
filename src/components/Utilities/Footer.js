@@ -22,10 +22,10 @@ export default function Footer(){
         <i class="fa-regular fa-envelope circleLogo"></i> */}
         <div class="social-menu">
         <ul>
-            <li><a href="https://github.com/sanketbodke" target="blank"><i class="fab fa-github"></i></a></li>
+            <li><a href="https://wa.me/918281166690" target="blank"><i class="fab fa-brands fa-whatsapp"></i></a></li>
             <li><a href="https://www.instagram.com/imsanketbodke/" target="blank"><i class="fab fa-instagram"></i></a></li>
-            <li><a href="https://www.linkedin.com/in/sanket-bodake-995b5b205/" target="blank"><i class="fab fa-linkedin-in"></i></a></li>
-            <li><a href="https://codepen.io/sanketbodke"><i class="fab fa-codepen" target="blank"></i></a></li>
+            <li><a href="https://www.linkedin.com/in/sanket-bodake-995b5b205/" target="blank"><i class="fab fa-brands fa-facebook-f"></i></a></li>
+            <li><a href="https://codepen.io/sanketbodke"><i class="fab fa-brands fa-youtube"></i></a></li>
         </ul>
     </div>
     </Col>
