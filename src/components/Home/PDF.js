@@ -1,6 +1,6 @@
 import React from 'react';
 import { Page, Text, View, Document, StyleSheet, Image, Font } from '@react-pdf/renderer';
-
+import logo from '../../images/logo.png'
 // Create styles
 const styles = StyleSheet.create({
     body: {
@@ -79,7 +79,7 @@ export default function PDF (props){
       <Text style={styles.author}>In the name we trust</Text>
       <Image
         style={styles.image}
-        src="https://www.simplilearn.com/ice9/free_resources_article_thumb/what_is_image_Processing.jpg"
+        src={logo}
       />
              
        <Text style={styles.subtitle}>
@@ -108,7 +108,7 @@ export default function PDF (props){
       Please read the following rules carefully
       </Text>
       <Text style={styles.text}>
-        dsdsdsdsd
+        To be updated
       </Text>
       </View>
   

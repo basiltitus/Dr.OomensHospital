@@ -20,7 +20,10 @@ export default function Sidebar(props){
       <i class="fa-solid fa-comment-sms"></i>{" "} SMS Dashboard
       </ListGroup.Item>
       <ListGroup.Item action onClick={()=>props.setActivePage('sms')}>
-      <i class="fa-solid fa-comment-sms"></i>{" "}SMS Dashboard
+      <i class="fa-solid fa-comment-sms"></i>{" "}Promotional SMS
+      </ListGroup.Item>
+      <ListGroup.Item action onClick={()=>props.setActivePage('LOGOUT')}>
+      <i class="fa-solid fa-right-from-bracket"></i>{" "}Logout
       </ListGroup.Item>
     </ListGroup>
         </Offcanvas.Body>

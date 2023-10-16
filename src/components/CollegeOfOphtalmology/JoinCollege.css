@@ -1,0 +1,46 @@
+#college-home-div {
+  background-color: #ac3f37;
+  height: auto !important;
+  padding: 10% 10%;
+}
+#college-home-div .content {
+  margin-right: 30%;
+  text-align: left;
+}
+#college-home-div h1 {
+  color: white;
+  font-size: 3rem;
+  font-weight: 900;
+}
+#college-home-div p {
+  font-size: 1.1rem;
+  color: white;
+  /* font-weight: 400; */
+}
+#college-home-div .appointmentBtn {
+  width: 9rem;
+  padding: 0%;
+  height: 3rem;
+}
+
+.left-inverted {
+  text-align: left;
+}
+@media only screen and (max-width: 768px) {
+  #college-home-div {
+    height: 75vh;
+  }
+  #college-home-div .content{
+    margin:auto
+  }
+  #college-home-div .content h1{
+    text-align: start;
+    font-size: 2rem !important;
+  }
+  #college-home-div .content p{
+  text-align:justify;
+  }
+  .left-inverted {
+   text-align: center;
+  }
+}

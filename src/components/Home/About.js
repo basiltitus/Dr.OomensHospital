@@ -3,7 +3,7 @@ import { Col, Container, Image, Row } from "react-bootstrap";
 import { aboutText } from "../../Constants";
 
 function About(){
-    return  <Container  id='aboutDiv'>
+    return  <Container  id='aboutDivss'>
     <Row>
       <Col>
           <div className="blockText">

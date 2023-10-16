@@ -1,124 +1,140 @@
 #carousel-card {
-    height: 42rem;
+  height: 48rem;
+  width: 100%;
+  padding: 0% !important;
+}
+#carousel-card .img-title {
+  /* position: absolute; */
+  /* top: 50%; */
+  width: 100%;
+  height: 30rem;
+  object-fit:cover;
+  opacity: 0.8;
+  filter: brightness(50%);
+}
+#carousel-card .card {
+  width: 30vw;
+}
+.content h1 {
+  color: #bd453d;
+  font-size: 2rem;
+}
+.content-title {
+  color: white !important;
+  font-size: 3rem !important;
+}
+.content p {
+  font-weight: 500;
+}
+#carousel-card .content {
+  position: absolute;
+  /* top: 50%; */
+  /* left: 25%;
+    right: 45%; */
+  transform: translate(0rem, -27rem);
+  width: 100%;
+  text-align: center;
+  z-index: 100;
+}
+#carousel-card h1 {
+  font-size: 1.8rem;
+  font-weight: 900;
+}
+#carousel-card .card-img-top {
+  height: 40vh;
+  object-fit: cover;
+}
+#carousel-card p {
+  font-weight: 500;
+  text-align: justify;
+  text-transform: none !important;
+  height: 25vh !important;
+  font-size: 1rem !important;
+  color: black;
+  /* width: 40vh; */
+}
+#carousel-card h5 {
+  font-size: 600;
+  color: white;
+}
+#carousel-card .card h5 {
+  color: #bd453d;
+  font-weight: 400;
+  font-size: 1.5rem;
+  height: 8vh;
+  /* margin-bottom: 2rem; */
+}
+#carousel-card hr {
+  position: relative;
+  border: none;
+  height: 0.01rem;
+  width: 20%;
+  left: 40%;
+  background: white;
+  font-weight: 900;
+  opacity: 1;
+  margin-bottom: 2rem;
+}
+
+@media only screen and (max-width: 768px) {
+  #carousel-card {
+    height: 94vh !important;
+    overflow-x: hidden;
     width: 100%;
-    padding: 0%;
   }
   #carousel-card img {
-    /* position: absolute; */
-    /* top: 50%; */
     width: 100%;
-    height: 30rem;
-    opacity: 0.8;
-    filter: brightness(50%);
+    height: 40vh !important;
+    object-fit: cover;
   }
-  #carousel-card .card{
-      width: 100% !important;
-      height: 100%;
+  #carousel-card .card {
+    width: 80vw !important;
+    padding: 0%;
   }
-  .content h1{
-      color: #BD453D;
-      font-size: 2rem ;
+  #carousel-card .card p {
+    font-size: 0.8rem !important;
+    width: auto;
+    height: auto !important;
   }
-  .content-title{
-      color:white !important;
-      font-size: 3rem !important;
+  #carousel-card .card-img-top {
+    height: 30vh !important;
   }
-  .content p{
-      font-weight: 500;
+  #carousel-card .card h5 {
+    padding: 0%;
+    height: auto !important;
+    font-size: 1.2rem;
   }
-  .card-img-top{
-    opacity: 1 !important;
-    filter: brightness(100%) !important;
+  #carousel-card .card button {
+    font-size: 1rem;
+    height: 1.5rem;
+    padding: 0%;
   }
   #carousel-card .content {
     position: absolute;
-    /* top: 50%; */
-    /* left: 25%;
-    right: 45%; */
-    transform: translate(0rem, -27rem);
+
+    transform: translate(0rem, -14em);
     width: 100%;
     text-align: center;
     z-index: 100;
   }
-  #carousel-card h1{
-      font-size: 1.8rem;
-      font-weight: 900;
-  }
-  #carousel-card h5{
-      color: white;
-      font-weight: 400;
-  }
-  #carousel-card hr{
+  .container-style {
     position: relative;
-    border: none;
-    height: 0.01rem;
-    width: 20%;
-    left: 40%;
-    background:white;
-    font-weight: 900;
-    opacity: 1;
-    margin-bottom: 2rem;
-  }
-  
-  .container-style{
-    position: relative;
-    height: 28rem;
-    width: 100%;
+    height: 29rem;
+    width: 70%;
+    margin-left: 15%;
     display: flex;
     flex: 1;
-    margin-top: 3%;
     justify-content: center;
     align-items: middle;
   }
-  .card-style{
-    height: 30rem;
-    width: 25rem;
-    /* padding: 80px; */
-    text-align: center;
-    background: white;
-    color: #BD453D;
-    text-transform: uppercase;
-    border-radius: 10px;
-    box-sizing: border-box;
+  .card-style {
+    height: 36rem;
+    /* width: 20rem; */
+    padding: 0px;
+    color: #bd453d;
+    font-size: 1rem;
   }
-
-  @media only screen and (max-width: 768px) {
-
-    #carousel-card {
-        height: 40rem;
-        overflow-x: hidden;
-        width: 100%;
-      }
-      #carousel-card img {
-        width: 100%;
-        height: 20rem;
-      }
-      #carousel-card .content {
-        position: absolute;
-       
-        transform: translate(0rem, -13rem);
-        width: 100%;
-        text-align: center;
-        z-index: 100;
-      }
-    .container-style{
-        position: relative;
-        height: 22rem;
-        width: 70%;
-        margin-left: 15%;
-        display: flex;
-        flex: 1;
-        justify-content: center;
-        align-items: middle;
-      }
-      .card-style{
-        height: 24rem;
-        width: 16rem;
-        padding: 0px;
-        color: #BD453D;
-        font-size: 1rem;;
-      }
-      #carousel-card h1{
-          font-size: 1.3rem;
-      }
+  #carousel-card h1 {
+    font-size: 1rem;
   }
+}

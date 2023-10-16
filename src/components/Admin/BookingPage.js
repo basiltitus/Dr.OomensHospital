@@ -1,7 +1,7 @@
 import { onValue, ref, remove, update } from "firebase/database";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, setDoc } from "firebase/firestore";
 import React, { useEffect } from "react";
-import { Button, Col, Container, Nav, Row } from "react-bootstrap";
+import { Button, Col, Container, Nav, Row,ButtonGroup } from "react-bootstrap";
 import { database } from "../firebase";
 import BootstrapTable from "react-bootstrap-table-next";
 import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
@@ -18,9 +18,12 @@ import filterFactory, {
   selectFilter,
 } from "react-bootstrap-table2-filter";
 import DoctorCard from "../Home/DoctorCard";
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import Dropdown from 'react-bootstrap/Dropdown';
 import { bookingEmptySrc } from "../../Constants";
 import Swal from "sweetalert2";
 import AppointmentBtn from "../Utilities/AppointmentBtn";
+import { DoctorList } from "../Home/DoctorList";
 const parse = require("html-react-parser");
 
 export default function BookingPage() {
@@ -220,10 +223,10 @@ export default function BookingPage() {
         ).then(() => {
           // Data saved successfully!
           // filterData(filteredBooking,selectedDoc,setSelectedPurpose,0)
-          Swal.fire("Saved!", "Booking has been terminated", "success");
+          Swal.fire("Saved!", "Booking has been completed", "success");
         });
       } else if (result.isDenied) {
-        Swal.fire("Changes are not saved", "", "info");
+        // Swal.fire("Changes are not saved", "", "info");
       }
     });}
   }
@@ -271,7 +274,7 @@ export default function BookingPage() {
           Swal.fire("Saved!", "Booking has been terminated", "success");
         });
       } else if (result.isDenied) {
-        Swal.fire("Changes are not saved", "", "info");
+        // Swal.fire("Changes are not saved", "", "info");
       }
     });
   }
@@ -320,7 +323,7 @@ export default function BookingPage() {
       if (data != null) {
         console.log(Object.values(data));
         setBookings(Object.values(data));
-        filterData(Object.values(data), "All", "All", 1);
+        filterData(Object.values(data), selectedDoc , selectedPurpose, 1);
       } else {
         setBookings([]);
         setFilteredBooking([]);
@@ -349,20 +352,25 @@ export default function BookingPage() {
     data.sort((a, b) => {
       return b.Status - a.Status;
     });
-    if (init) setFilteredBooking(data);
+    if (init) {
+      setSelectedDoc("All")
+      setSelectedPurpose('All')
+      setFilteredBooking(data);}
     else {
       setFilteredBooking(data);
-      console.log(data);
       console.log(doc + " " + purpose);
+      console.log(data)
+      console.log(bookings)
       if (doc == "All" && purpose == "All") setFilteredBooking(bookings);
       else if (doc != "All" && purpose == "All")
-        setFilteredBooking(bookings.filter((el) => el.DoctorName == doc));
+        setFilteredBooking(bookings.filter((el) => el.DoctorName.includes(doc)));
       else if (doc == "All" && purpose != "All")
         setFilteredBooking(bookings.filter((el) => el.Purpose == purpose));
       else
         setFilteredBooking(
-          bookings.filter((el) => el.Purpose == purpose && el.DoctorName == doc)
+          bookings.filter((el) => el.Purpose == purpose && el.DoctorNameincludes(doc))
         );
+        console.log(filteredBooking)
 
     }
   }
@@ -378,10 +386,11 @@ export default function BookingPage() {
   return (
     <>
       <Row>
-        <Col className="col-md-3 col-sm-2">
+        <Col className="col-md-3 col-sm-6">
           <CustomSelect
             title="Doctor"
-            options={["All", doctor1Name, doctor2Name]}
+            options={['All',...DoctorList.map(item=>item.name)]}
+            // {["All", doctor1Name, doctor2Name]}
             onChange={(val) => {
               setSelectedDoc(val);
               filterData(filteredBooking, val, selectedPurpose, 0);
@@ -389,7 +398,7 @@ export default function BookingPage() {
             value={selectedDoc}
           />
         </Col>
-        <Col className="col-md-3 col-sm-2">
+        <Col  className="col-md-3 col-sm-6">
           <CustomSelect
             title="Purpose"
             options={["All", "Surgery", "Consultation", "Follow-up"]}
@@ -397,10 +406,9 @@ export default function BookingPage() {
               setSelectedPurpose(val);
               filterData(filteredBooking, selectedDoc, val, 0);
             }}
-            value={selectedDoc}
+            value={selectedPurpose}
           />
         </Col>
-        <Col className="col-md-2 removeable" />
         <Col className="col-md-2 col-sm-6 pt-4">
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DatePicker
@@ -411,22 +419,35 @@ export default function BookingPage() {
             />
           </LocalizationProvider>
         </Col>
-        <Col className="col-md-2 col-sm-5 pt-4">
+        <Col className="col-md-2 col-sm-6 pt-4 text-center">
+        <ButtonGroup size="lg">
+        {/* <DropdownButton as={ButtonGroup} title="Doctor Actions" id="bg-nested-dropdown">
+        <Dropdown.Item eventKey="1">Mark all bookings Complete</Dropdown.Item>
+        <Dropdown.Item eventKey="2">Mark all bookings Cancel</Dropdown.Item>
+        <Dropdown.Item eventKey="3">Stop upcoming Booking</Dropdown.Item>
+      </DropdownButton>
+      <DropdownButton as={ButtonGroup} title="Date Actions" id="bg-nested-dropdown">
+      <Dropdown.Item eventKey="1">Mark all bookings Complete</Dropdown.Item>
+        <Dropdown.Item eventKey="2">Mark all bookings Cancel</Dropdown.Item>
+        <Dropdown.Item eventKey="3">Stop upcoming Booking</Dropdown.Item>
+      </DropdownButton> */}
           <AppointmentBtn  isAdmin={true}/>
+    </ButtonGroup>
         </Col>
       </Row>
-      <Nav variant="tabs" 
+      <Nav variant="tabs"  className='tabbed-nav'
        onSelect={(event, eventKey) => setTabbedData(event)}>
       <Nav.Item>
         <Nav.Link eventKey="OPEN" >Open</Nav.Link>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link eventKey="CLOSED">Closed</Nav.Link>
+        <Nav.Link eventKey="CLOSED">Completed</Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+      <Nav.Link eventKey="CANCELLED">Cancelled</Nav.Link>
       </Nav.Item>
       <Nav.Item>
         <Nav.Link eventKey="LEADS">Leads</Nav.Link>
-      </Nav.Item>
-      <Nav.Item>
       </Nav.Item>
     </Nav>
       <>
@@ -469,6 +490,7 @@ export default function BookingPage() {
             </Col>
           </Row>
         </>:
+        <div className="scrollable">
         <BootstrapTable
           keyField="BookingID"
           data={filteredBooking.filter((el)=>el.Status=='CLOSED')}
@@ -482,7 +504,35 @@ export default function BookingPage() {
           expandRow={ expandRow }
           filter={filterFactory()}
         //   rowEvents={rowEvents}
-        />)
+        /></div>)
+        }
+        { tabbedData=='CANCELLED'&&
+        (filteredBooking.filter((el)=>el.Status=='CANCELLED').length==0?
+        <>
+        <Row>
+            <Col className="text-right">
+              <img src={bookingEmptySrc} className="emptyImg" />
+            </Col>
+            <Col className="text-left">
+              <h1 className="emptyText">No Bookings</h1>
+            </Col>
+          </Row>
+        </>:
+        <div className="scrollable">
+        <BootstrapTable
+          keyField="BookingID"
+          data={filteredBooking.filter((el)=>el.Status=='CANCELLED')}
+          noDataIndication={() => {
+            <h1>empty</h1>;
+          }}
+          striped
+          hover
+          condensed
+          columns={columns}
+          expandRow={ expandRow }
+          filter={filterFactory()}
+        //   rowEvents={rowEvents}
+        /></div>)
         }
         { tabbedData=='LEADS'&&
         (leads.filter((el)=>el.Status=='OPEN').length==0?
@@ -496,6 +546,7 @@ export default function BookingPage() {
             </Col>
           </Row>
         </>:
+        <div className="scrollable">
         <BootstrapTable
           keyField="Phone"
           data={leads.filter((el)=>el.Status=='OPEN')}
@@ -504,7 +555,8 @@ export default function BookingPage() {
           condensed
           columns={leadsColumns}
           filter={filterFactory()}
-        />)
+        />
+        </div>)
         }
         </>
         

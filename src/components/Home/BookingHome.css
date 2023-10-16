@@ -1,0 +1,31 @@
+#booking-home-div {
+    background-color: #ac3f37 ;
+    height: auto !important;
+    padding:10% 10%
+}
+#booking-home-div .content{
+    margin-right: 30%;
+    text-align: left;
+}
+#booking-home-div h1{
+    color: white;
+    font-size: 3rem;
+    font-weight: 900;
+}
+#booking-home-div p{
+    font-size: 1.1rem;
+    color: white;
+    /* font-weight: 400; */
+}
+#booking-home-div .appointmentBtn{
+    width: 9rem;
+    padding: 0%;
+    height: 3rem;
+}
+
+
+@media (max-width: 950px) {
+    #booking-home-div .content{
+        margin-right: 10%;
+    }
+}

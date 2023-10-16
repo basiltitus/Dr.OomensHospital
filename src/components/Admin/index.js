@@ -8,7 +8,7 @@ export default function AdminHome(){
     return(<>
         {!isAuth&&
         <Login AuthenticationSuccessfull={()=>{setIsAuth(true)}} />}
-{isAuth&&<Dashboard />}
+{isAuth&&<Dashboard logout={()=>setIsAuth(false)} />}
         </>
     );
 }

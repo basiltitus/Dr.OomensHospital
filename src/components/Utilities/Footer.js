@@ -8,7 +8,7 @@ export default function Footer(){
 <Row >
     <Col>
 
-<p  className='text-left fontS3'>&copy;Devoloped with love 2023</p>
+<p  className='text-left fontS3'>&copy;Devoloped with care 2023</p>
     </Col>
     <Col className='text-right fontS1'>
         {/* Follow us : 
@@ -22,7 +22,7 @@ export default function Footer(){
         <i class="fa-regular fa-envelope circleLogo"></i> */}
         <div class="social-menu">
         <ul>
-            <li><a href="https://wa.me/918281166690" target="blank"><i class="fab fa-brands fa-whatsapp"></i></a></li>
+            <li><a href="https://wa.me/919446353417" target="blank"><i class="fab fa-brands fa-whatsapp"></i></a></li>
             <li><a href="https://www.instagram.com/imsanketbodke/" target="blank"><i class="fab fa-instagram"></i></a></li>
             <li><a href="https://www.linkedin.com/in/sanket-bodake-995b5b205/" target="blank"><i class="fab fa-brands fa-facebook-f"></i></a></li>
             <li><a href="https://codepen.io/sanketbodke"><i class="fab fa-brands fa-youtube"></i></a></li>

@@ -2,8 +2,8 @@ import OTPInput, { ResendOTP } from "otp-input-react";
 import React from "react";
 import { Button } from "react-bootstrap";
 
-export default function OTP() {
-  const [OTP, setOTP] = React.useState("");
+export default function OTP(props) {
+  
   const renderButton = (buttonProps) => {
     return (
       <Button className='resend-btn' {...buttonProps}>
@@ -13,7 +13,7 @@ export default function OTP() {
   };
   return (
     <div className='otp-div'>
-      <OTPInput value={OTP} onChange={setOTP} autoFocus OTPLength={4} otpType="number" disabled={false} secure 
+      <OTPInput value={props.OTP}  onChange={props.setOTP} autoFocus OTPLength={4} otpType="number" disabled={false} secure 
           className='otp-item'
       />
       <ResendOTP maxTime={60} onResendClick={() => console.log("Resend clicked")}

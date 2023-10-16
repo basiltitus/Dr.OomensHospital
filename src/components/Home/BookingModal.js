@@ -6,17 +6,16 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { child, get, ref, remove, set } from "firebase/database";
 import { database } from "../firebase";
-import {
-  PDFDownloadLink,
-} from "@react-pdf/renderer";
+import { PDFDownloadLink } from "@react-pdf/renderer";
 import PDF from "./PDF";
 import { Checkmark } from "react-checkmark";
+import { DoctorList } from "./DoctorList";
 
 export default function BookingModal(props) {
   const [screen, setScreen] = React.useState(0);
   const [details, setDetails] = React.useState({
     PatientName: "",
-    Age: '',
+    Age: "",
     DoctorName: "",
     Purpose: "",
     Phone: "",
@@ -26,10 +25,10 @@ export default function BookingModal(props) {
   const [minDate, setMinDate] = React.useState("");
   const [maxDate, setMaxDate] = React.useState("");
   const [blobURL, setBlobURL] = React.useState("");
-
+  const [OTPval, setOTPval] = React.useState("");
   function handleClose() {
-    if(screen!=3){
-      if(details.Phone.length==10){
+    if (screen != 3) {
+      if (details.Phone.length == 10) {
         const d = new Date();
         set(
           ref(
@@ -44,8 +43,9 @@ export default function BookingModal(props) {
               details.Phone
           ),
           {
-            Phone:details.Phone,
-            Time:d.getHours()+' : '+d.getMinutes()+" : "+d.getSeconds(),
+            Phone: details.Phone,
+            Time:
+              d.getHours() + " : " + d.getMinutes() + " : " + d.getSeconds(),
             Status: "OPEN",
           }
         );
@@ -78,21 +78,28 @@ export default function BookingModal(props) {
     const db = database;
     let queryString = "";
 
-    if (details.DoctorName.includes("Oommen")) queryString = "BookingOommenID";
-    else queryString = "BookingDocID";
+    // if (details.DoctorName.includes("Oommen")) queryString = "BookingOommenID";
+    // else 
+    queryString = "BookingDocID";
     get(child(ref(db), queryString))
       .then((snapshot) => {
         BookingID = snapshot.val();
         console.log(BookingID);
 
         const d = new Date(details.BookingDate);
-        var currentdate = new Date(); 
-var datetime =  currentdate.getDate() + "/"
-                + (currentdate.getMonth()+1)  + "/" 
-                + currentdate.getFullYear() + " @ "  
-                + currentdate.getHours() + ":"  
-                + currentdate.getMinutes() + ":" 
-                + currentdate.getSeconds();
+        var currentdate = new Date();
+        var datetime =
+          currentdate.getDate() +
+          "/" +
+          (currentdate.getMonth() + 1) +
+          "/" +
+          currentdate.getFullYear() +
+          " @ " +
+          currentdate.getHours() +
+          ":" +
+          currentdate.getMinutes() +
+          ":" +
+          currentdate.getSeconds();
         set(
           ref(
             db,
@@ -114,7 +121,7 @@ var datetime =  currentdate.getDate() + "/"
         );
         set(ref(db, queryString), +BookingID + 1);
         console.log(details);
-        const f=new Date();
+        const f = new Date();
         remove(
           ref(
             database,
@@ -127,7 +134,7 @@ var datetime =  currentdate.getDate() + "/"
               "/" +
               details.Phone
           )
-        )
+        );
         setDetails({ ...details, BookingID: BookingID });
         setScreen(3);
         // setDetails({});
@@ -171,6 +178,7 @@ var datetime =  currentdate.getDate() + "/"
                                   type="text"
                                   placeholder="Name"
                                   value={details.PatientName}
+                                  required
                                   onChange={(e) => {
                                     setDetails({
                                       ...details,
@@ -189,6 +197,9 @@ var datetime =  currentdate.getDate() + "/"
                                   type="number"
                                   placeholder="Years"
                                   required
+                                  min={1}
+                                  max={100}
+                                  maxLength={2}
                                   value={details.Age}
                                   onChange={(e) => {
                                     setDetails({
@@ -219,8 +230,7 @@ var datetime =  currentdate.getDate() + "/"
                                   <option value="" selected hidden disabled>
                                     Doctor Name
                                   </option>
-                                  <option>Dr. Oommen Varghese</option>
-                                  <option>Dr. Arun Philip</option>
+                                  {DoctorList.map((item)=><option>{item.name},{item.position}</option>)}
                                 </select>{" "}
                                 <span class="select-arrow"></span>{" "}
                                 <span class="form-label-select">
@@ -264,6 +274,9 @@ var datetime =  currentdate.getDate() + "/"
                                 type="tel"
                                 placeholder="Enter you Phone"
                                 value={details.Phone}
+                                minLength={10}
+                                maxLength={10}
+                                required
                                 onChange={(e) => {
                                   setDetails({
                                     ...details,
@@ -280,6 +293,7 @@ var datetime =  currentdate.getDate() + "/"
                                 type="date"
                                 placeholder="Booking Date"
                                 value={details.BookingDate}
+                                required
                                 onChange={(e) => {
                                   setDetails({
                                     ...details,
@@ -298,15 +312,13 @@ var datetime =  currentdate.getDate() + "/"
                             <button
                               class="submit-btn"
                               onClick={() => {
-                                if(props.isAdmin)
-                                { bookingfn();
-                                  setScreen(3);}
-                                else
-                                setScreen(1);
+                                // if (props.isAdmin) {
+                                  bookingfn();
+                                  setScreen(3);
+                                // } else setScreen(3);
                               }}
-                            >
-                            {props.isAdmin?'Book Now':
-                              'Get OTP'}
+                            >Book Now
+                              {/* {props.isAdmin ? "Book Now" : "Get OTP"} */}
                             </button>{" "}
                           </div>
                         </form>
@@ -314,13 +326,15 @@ var datetime =  currentdate.getDate() + "/"
                     )}
                     {screen == 1 && (
                       <>
-                        <OTP />
+                        <OTP setOTP={setOTPval} OTP={OTPval} />
                         <div class="form-btn">
                           {" "}
                           <button
                             class="submit-btn"
                             onClick={() => {
-                              setScreen(2);
+                              if (OTPval.length != 4) {
+                                Swal.fire("Please enter valid OTP");
+                              } else setScreen(2);
                             }}
                           >
                             Confirm
@@ -374,8 +388,7 @@ var datetime =  currentdate.getDate() + "/"
                                 <option value="" selected hidden>
                                   Doctor Name
                                 </option>
-                                <option>Dr. Oommen Varghese</option>
-                                <option>Dr. Arun Philip</option>
+                                {DoctorList.map((item)=><option>{item.name},{item.position}</option>)}
                               </select>{" "}
                               <span class="select-arrow"></span>{" "}
                               <span class="form-label-select">Booking for</span>{" "}
@@ -443,7 +456,7 @@ var datetime =  currentdate.getDate() + "/"
                         <Checkmark size="96px" />
                         <h3
                           className="text-center"
-                          style={{ padding: "1rem 0rem" }}
+                          style={{ padding: "1rem 0rem",height:'auto'}}
                         >
                           YOUR BOOKING IS SUCCESSFULL
                         </h3>
@@ -461,7 +474,7 @@ var datetime =  currentdate.getDate() + "/"
 
                         <div class="form-btn">
                           <PDFDownloadLink
-                            document={<PDF details={details}/>}
+                            document={<PDF details={details} />}
                             fileName={"Booking_" + details.BookingID + ".pdf"}
                           >
                             {({ blob, url, loading, error }) =>

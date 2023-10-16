@@ -1,0 +1,20 @@
+
+.download-button {
+  background-color: #fbc02d !important;
+  color: #fff;
+  
+  font-weight: bold !important;
+
+}
+
+.download-button:hover {
+  background-color: #be8902;
+}
+
+
+@media only screen and (max-width: 768px) {
+  .download-button{
+    margin-top: 4% !important;
+    /* width: 100% !important; */
+  }
+}

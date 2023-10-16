@@ -2,7 +2,9 @@ import React from "react";
 import AppBar from "../Utilities/AppBar";
 import Footer from "../Utilities/Footer";
 import Topbar from "../Utilities/Topbar";
+import BookingHome from "./BookingHome";
 import CarouselCard from "./CarouselCard";
+import CarouselEvents from "./CarouselEvents";
 import DoctorDiv from "./DoctorDiv";
 import HeroScreen from "./HeroScreen";
 import Location from "./Location";
@@ -17,6 +19,9 @@ export default function Home(){
       <AppBar />
       <HeroScreen />
       <WelcomeCard />
+      <br/>
+      <BookingHome/>
+      {/* <CarouselEvents/> */}
       <hr/>
       <Services />  
       <hr />
@@ -27,7 +32,7 @@ export default function Home(){
       <CarouselCard />
       <hr />
       <Location />
-      <div type="button" class="email-bt" onClick={()=>window.location.href='https://wa.me/918281166690'}>
+      <div type="button" class="email-bt" onClick={()=>window.location.href='https://wa.me/919446353417'}>
     <div class="text-call">
     <i class="fab fa-brands fa-whatsapp" aria-hidden={true}></i>
         {/* <span><i class="fab fa-brands fa-whatsapp" aria-hidden={true}></i></span> */}

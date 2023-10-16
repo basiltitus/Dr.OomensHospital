@@ -7,8 +7,8 @@ export default function CounterCard(props){
 
             <i class="fa-solid fa-heart" ></i>
         </div>
-            <Counter number={5000} title='+' />
-            <p>Patients Treated</p>
+            <Counter number={props.count} title='+' />
+            <p>{props.title}</p>
         </div>
     );
 }
